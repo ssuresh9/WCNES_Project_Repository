@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Wireless_Proj_Contiki",
+            "cwd": "${workspaceRoot}",
+            "executable": "/home/wcnes/project/Initial_Baseline/Client/build/nrf52840/dk/client.elf",
+            "serverpath": "/opt/SEGGER/JLink/JLinkGDBServerCLExe",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "jlink",
+            "device": "nrf52",
+            "interface": "swd",
+            "armToolchainPath": "/home/wcnes/gcc-arm-none-eabi-9-2020-q2-update/bin/",
+            "ipAddress": null, 
+            "serialNumber": null,
+            "preLaunchTask": "Build and flash"
+        }
+    ]
+}
