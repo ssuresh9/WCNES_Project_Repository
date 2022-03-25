@@ -13,7 +13,7 @@
 
 25/3/2022
 
-1.VSCode Deubugger configurations added and initial code committed.Keep the folder in home/projects are vscode config paths are absolute. Otherwise edit the paths in vscodeconfig to debug.
+1.VSCode Deubugger configurations added and initial code committed.Keep the folders in path home/projects/Initial_Baseline as vscode config paths are absolute. Otherwise edit the paths in vscodeconfig to debug.
 
 TO DO:
 
