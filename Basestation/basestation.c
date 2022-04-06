@@ -18,6 +18,7 @@ AUTOSTART_PROCESSES(&basestation_process);
 /* Holds the number of packets received. */
 static int count = 0;
 static int8_t last_rssi;
+static linkaddr_t my_addr =         {{ 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }};
 
 
 static void print_packet(const void *data, uint8_t len) {
@@ -57,6 +58,8 @@ PROCESS_THREAD(basestation_process, ev, data) {
     static struct etimer timer;
 	/* Initialize NullNet */
 	nullnet_set_input_callback(recv);
+    NETSTACK_RADIO.set_value(RADIO_PARAM_CHANNEL,20);
+    linkaddr_set_node_addr(&my_addr);
 
     /* Setup a periodic timer that expires after 10 seconds. */
     etimer_set(&timer, CLOCK_SECOND * 10);
