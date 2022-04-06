@@ -84,6 +84,7 @@ PROCESS_THREAD(client_process, ev, data) {
 	nullnet_buf = (uint8_t *)&buffer;
 	nullnet_len = sizeof(buffer);
 	nullnet_set_input_callback(recv);
+    NETSTACK_RADIO.set_value(RADIO_PARAM_CHANNEL,20);
 
     /* Setup a periodic timer that expires after 2 seconds. */
     etimer_set(&timer, CLOCK_SECOND / 1);
