@@ -14,6 +14,9 @@ AUTOSTART_PROCESSES(&client_process);
 #define PKT_SIZE 32
 #define HDR_SIZE 5
 
+
+static linkaddr_t dest_addr =        {{ 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }};
+
 /* including a header to the packet:
  * - 1B sequence number
  * - 4B tx_timestamp
@@ -62,7 +65,7 @@ static  void compute_sequence(uint8_t *packet, uint8_t seed, uint8_t length) {
 static void send(const void* data, uint16_t len) {
     memcpy(nullnet_buf, data, len);
     nullnet_len = len;
-    NETSTACK_NETWORK.output(NULL);
+    NETSTACK_NETWORK.output(&dest_addr);
 }
 
 static void recv(const void *data, uint16_t len,
