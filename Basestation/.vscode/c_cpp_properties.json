@@ -6,7 +6,7 @@
         {
             "name": "Contiki",
             "includePath": [
-                "/home/wcnes/contiki-ng-wcnes"
+                "../contiki-ng-wcnes"
             ],
             "compilerPath": "/home/wcnes/gcc-arm-none-eabi-9-2020-q2-update/bin/arm-none-eabi-gcc",
             "cStandard": "gnu17",

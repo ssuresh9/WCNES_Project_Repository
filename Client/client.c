@@ -12,7 +12,7 @@ AUTOSTART_PROCESSES(&client_process);
 
 #define FILE_SIZE 10000
 #define PKT_SIZE 32
-#define HDR_SIZE 5
+#define HDR_SIZE 6
 
 
 static linkaddr_t dest_addr =        {{ 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }};
@@ -24,13 +24,18 @@ static linkaddr_t dest_addr =        {{ 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
  * packet: buffer to be updated with the header
  * seq: sequence number of the packet
  */
-static void add_header(uint8_t *packet, uint8_t seq) {
+static void add_header(uint8_t *packet, uint16_t seq) {
     static uint32_t timestamp = 0;
+  //  uint16_t dummy;
     /* use first byte of the packet as sequence number. */
-    packet[0] = seq & 0xff;
+    packet[0] = (uint8_t)(seq & 0x00ff);
+    packet[1] = (uint8_t)((seq>>8)& 0x00ff);
+  //  dummy=((uint16_t)(packet[1]<<8)|(uint16_t)(packet[0]));
+
+  //  printf("packet print:%i ",dummy);
     /* four bytes of timestamp */
     timestamp = (uint32_t)RTIMER_NOW();
-    memcpy(&packet[1], &timestamp, 4);
+    memcpy(&packet[2], &timestamp, 4);
 }
 
 /* generaion of a random sequence.
@@ -66,6 +71,7 @@ static void send(const void* data, uint16_t len) {
     memcpy(nullnet_buf, data, len);
     nullnet_len = len;
     NETSTACK_NETWORK.output(&dest_addr);
+    //NETSTACK_NETWORK.output(NULL);
 }
 
 static void recv(const void *data, uint16_t len,
@@ -75,8 +81,9 @@ static void recv(const void *data, uint16_t len,
 /* Our main process. */
 PROCESS_THREAD(client_process, ev, data) {
     static uint8_t buffer[PKT_SIZE + HDR_SIZE];  // include 5 header bytes
-    static uint8_t counter = 0;
+    static uint16_t counter = 0;
     static struct etimer timer;
+   // static int value;
 
 	PROCESS_BEGIN();
     
@@ -84,15 +91,16 @@ PROCESS_THREAD(client_process, ev, data) {
 	nullnet_buf = (uint8_t *)&buffer;
 	nullnet_len = sizeof(buffer);
 	nullnet_set_input_callback(recv);
-    NETSTACK_RADIO.set_value(RADIO_PARAM_CHANNEL,20);
+    // NETSTACK_RADIO.get_value(RADIO_PARAM_CHANNEL,&value);
 
     /* Setup a periodic timer that expires after 2 seconds. */
-    etimer_set(&timer, CLOCK_SECOND / 1);
+    etimer_set(&timer, CLOCK_SECOND / 8);
     
 	/* Loop forever. */
-	while (1) {
+	while (counter<314) {
 		PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
         etimer_restart(&timer);
+       // printf("Channel:%i",value);
 
         /* add header (3 bytes) */
         add_header(&buffer[0], counter);

@@ -7,7 +7,7 @@
         {
             "name": "Wireless_Proj_Contiki",
             "cwd": "${workspaceRoot}",
-            "executable": "/home/wcnes/project/Initial_Baseline/Basestation/build/nrf52840/dk/basestation.elf",
+            "executable": "../Basestation/build/nrf52840/dk/basestation.elf",
             "serverpath": "/opt/SEGGER/JLink/JLinkGDBServerCLExe",
             "request": "launch",
             "type": "cortex-debug",

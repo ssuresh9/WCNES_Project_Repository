@@ -13,18 +13,17 @@ PROCESS(basestation_process, "Clicker basestation");
  * the node has booted. */
 AUTOSTART_PROCESSES(&basestation_process);
 
-#define HDR_SIZE 5
+#define HDR_SIZE 6
 
 /* Holds the number of packets received. */
 static int count = 0;
 static int8_t last_rssi;
-static linkaddr_t my_addr =         {{ 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }};
 
 
 static void print_packet(const void *data, uint8_t len) {
     /* print sequence number, timestam, data (in hex) and RSSI of received data */
     last_rssi = -(nrf_radio_rssi_sample_get());
-    printf("%u|%lu|%lu|", *((uint8_t *)data), *((uint32_t *)(data+1)), ((uint32_t)RTIMER_NOW())) ;
+    printf("%u|%lu|%lu|", *((uint16_t *)data), *((uint32_t *)(data+1)), ((uint32_t)RTIMER_NOW())) ;
     for (uint8_t i=0; i<len-HDR_SIZE; i++) {
       printf("%02x ", *((uint8_t *)(data+i+HDR_SIZE)));
     }
@@ -58,8 +57,7 @@ PROCESS_THREAD(basestation_process, ev, data) {
     static struct etimer timer;
 	/* Initialize NullNet */
 	nullnet_set_input_callback(recv);
-    NETSTACK_RADIO.set_value(RADIO_PARAM_CHANNEL,20);
-    linkaddr_set_node_addr(&my_addr);
+    
 
     /* Setup a periodic timer that expires after 10 seconds. */
     etimer_set(&timer, CLOCK_SECOND * 10);
