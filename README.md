@@ -15,6 +15,7 @@
 
 1.VSCode Deubugger configurations added and initial code committed.Keep the folders in path home/projects/Initial_Baseline as vscode config paths are absolute. Otherwise edit the paths in vscodeconfig to debug.
 
-TO DO:
+14/4/2022
 
-1.Collect power profiler and test. 2.Test the dongle. 3.Do basic research on delay,reliability and energy for different use cases.
+Focus on multiple nodes communication.
+Exploring RPL+TSCH Configuration at the moment.
