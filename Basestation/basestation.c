@@ -43,6 +43,7 @@
 #include "net/mac/tsch/tsch.h"
 #include "lib/random.h"
 #include "sys/node-id.h"
+#include "nrf_radio.h"
 
 #include "sys/log.h"
 #define LOG_MODULE "App"
@@ -107,8 +108,8 @@ static  void compute_sequence(uint8_t *packet, uint8_t seed, uint8_t length) {
 }
 static void print_packet(const void *data, uint8_t len) {
     /* print sequence number, timestam, data (in hex) and RSSI of received data */
-    last_rssi =0;// -(nrf_radio_rssi_sample_get());
-    printf("%u|%lu|%lu|", *((uint8_t *)data), *((uint32_t *)(data+1)), ((uint32_t)RTIMER_NOW())) ;
+    last_rssi = -(nrf_radio_rssi_sample_get());
+    printf("%u|%lu|%lu|", *((uint16_t *)data), *((uint32_t *)(data+1)), ((uint32_t)RTIMER_NOW())) ;
     uint8_t i;
     for (i=0; i<len-HDR_SIZE; i++) {
       printf("%02x ", *((uint8_t *)(data+i+HDR_SIZE)));
