@@ -142,7 +142,7 @@ PROCESS_THREAD(node_process, ev, data)
 
   is_coordinator = 0;
 
-  is_coordinator =0;//= (node_id == 1);
+  is_coordinator = (node_id == 1);
 
 
   if(is_coordinator) {
