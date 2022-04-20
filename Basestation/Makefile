@@ -1,7 +1,7 @@
 # Contiki network configuration
 MAKE_MAC = MAKE_MAC_TSCH #Mac as Tsch
 
-CONTIKI_PROJECT = client basestation login
+CONTIKI_PROJECT = client basestation relay login
 APPS=serial-shell
 
 all: $(CONTIKI_PROJECT)
@@ -16,6 +16,7 @@ MAKE_WITH_SECURITY ?= 0
 MAKE_WITH_PERIODIC_ROUTES_PRINT = 1
 
 MAKE_MAC = MAKE_MAC_TSCH
+#MAKE_ROUTING=MAKE_ROUTING_RPL_CLASSIC
 
 include $(CONTIKI)/Makefile.dir-variables
 MODULES += $(CONTIKI_NG_SERVICES_DIR)/shell

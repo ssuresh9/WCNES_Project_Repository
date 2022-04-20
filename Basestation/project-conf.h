@@ -77,7 +77,7 @@
 #define TSCH_STATS_CONF_DECAY_INTERVAL (60 * CLOCK_SECOND)
 
 /*Enable TCP*/
-#define UIP_CONF_TCP 1
+//#define UIP_CONF_TCP 1
 
 /*******************************************************/
 /************* Other system configuration **************/
