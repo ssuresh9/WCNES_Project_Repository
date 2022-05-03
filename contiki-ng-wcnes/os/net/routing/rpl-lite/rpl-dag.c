@@ -204,7 +204,7 @@ rpl_refresh_routes(const char *str)
 void
 rpl_global_repair(const char *str)
 {
-  #if 0
+
   if(rpl_dag_root_is_root()) {
     RPL_LOLLIPOP_INCREMENT(curr_instance.dag.version);  /* New DAG version */
     curr_instance.dtsn_out = RPL_LOLLIPOP_INIT;  /* Re-initialize DTSN */
@@ -218,13 +218,11 @@ rpl_global_repair(const char *str)
     /* Now do a local repair to disseminate the new version */
     rpl_local_repair("Global repair");
   }
-  #endif
 }
 /*---------------------------------------------------------------------------*/
 static void
 global_repair_non_root(rpl_dio_t *dio)
 {
-  #if 0
   if(!rpl_dag_root_is_root()) {
     LOG_WARN("participating in global repair, version %u, rank %u\n",
          dio->version, curr_instance.dag.rank);
@@ -238,7 +236,6 @@ global_repair_non_root(rpl_dio_t *dio)
     process_dio_init_dag(dio);
     rpl_local_repair("Global repair");
   }
-  #endif
 }
 /*---------------------------------------------------------------------------*/
 void
