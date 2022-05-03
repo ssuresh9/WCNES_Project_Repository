@@ -49,6 +49,7 @@
 /*******************************************************/
 /******************* Configure TSCH ********************/
 /*******************************************************/
+#define MAC_CONF_WITH_TSCH 1
 
 /* IEEE802.15.4 PANID */
 #define IEEE802154_CONF_PANID 0x81a5
@@ -75,6 +76,7 @@
 
 /* Reduce the TSCH stat "decay to normal" period to get printouts more often */
 #define TSCH_STATS_CONF_DECAY_INTERVAL (60 * CLOCK_SECOND)
+#define TSCH_CONF_ASSOCIATION_POLL_FREQUENCY 5
 
 /*Enable TCP*/
 //#define UIP_CONF_TCP 1
@@ -84,12 +86,32 @@
 /*******************************************************/
 
 /* Logging */
-//#define LOG_CONF_LEVEL_RPL                         LOG_LEVEL_INFO
-#define LOG_CONF_LEVEL_TCPIP                       LOG_LEVEL_WARN
-#define LOG_CONF_LEVEL_IPV6                        LOG_LEVEL_WARN
-#define LOG_CONF_LEVEL_6LOWPAN                     LOG_LEVEL_WARN
+#define LOG_CONF_LEVEL_RPL                         LOG_LEVEL_INFO
+//#define LOG_CONF_LEVEL_TCPIP                       LOG_LEVEL_WARN
+//#define LOG_CONF_LEVEL_IPV6                        LOG_LEVEL_WARN
+//#define LOG_CONF_LEVEL_6LOWPAN                     LOG_LEVEL_WARN
 //#define LOG_CONF_LEVEL_MAC                         LOG_LEVEL_DBG
-#define LOG_CONF_LEVEL_FRAMER                      LOG_LEVEL_INFO
+//#define LOG_CONF_LEVEL_FRAMER                      LOG_LEVEL_INFO
 //#define TSCH_LOG_CONF_PER_SLOT                     1
+
+#define TSCH_CONF_EB_PERIOD (CLOCK_SECOND/16)
+#define TSCH_CONF_MAX_EB_PERIOD (CLOCK_SECOND/2)
+#define TSCH_CONF_DEFAULT_HOPPING_SEQUENCE TSCH_HOPPING_SEQUENCE_8_8
+#define TSCH_CONF_CCA_ENABLED 1
+#define TSCH_CONF_CHANNEL_SCAN_DURATION (CLOCK_SECOND/4)
+#define TSCH_CONF_ASSOCIATION_POLL_FREQUENCY 5
+#define TSCH_CONF_KEEPALIVE_TIMEOUT (60*CLOCK_SECOND)
+#define TSCH_CONF_MAX_KEEPALIVE_TIMEOUT (120*CLOCK_SECOND)
+
+#define RPL_CONF_WITH_PROBING 0
+#define RPL_CONF_PREFERENCE 0
+
+//DIO REDUNDANCY.
+//DAG TIMER LIFETIME.
+//MAKE CLIENT a LEAF NODE
+
+//INCREASE DIS TIMER NODE SPECIFICALLY.
+//DIO INTERVAL MIN
+
 
 #endif /* __PROJECT_CONF_H__ */

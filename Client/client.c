@@ -52,7 +52,7 @@
 #define UDP_CLIENT_PORT	8765
 #define UDP_SERVER_PORT	5678
 
-#define SEND_INTERVAL		  (1 * CLOCK_SECOND)
+#define SEND_INTERVAL		  ( CLOCK_SECOND/2)
 
 #define FILE_SIZE 10000
 #define PKT_SIZE 32
@@ -184,7 +184,7 @@ PROCESS_THREAD(node_process, ev, data)
       LOG_INFO_("\n");
     }
      else {
-      LOG_INFO("Not reachable yet\n");
+      LOG_INFO("\rNot reachable yet\n");
     }
 
     /* Add some jitter */

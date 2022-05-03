@@ -301,6 +301,7 @@
 #endif
 
 /* Interval of DIS transmission  */
+#define RPL_CONF_DIS_INTERVAL  (5 * CLOCK_SECOND)
 #ifdef RPL_CONF_DIS_INTERVAL
 #define RPL_DIS_INTERVAL                RPL_CONF_DIS_INTERVAL
 #else

@@ -58,6 +58,8 @@
 /* Default IEEE 802.15.4e hopping sequences, obtained from https://gist.github.com/twatteyne/2e22ee3c1a802b685695 */
 /* 16 channels, sequence length 16 */
 #define TSCH_HOPPING_SEQUENCE_16_16 (uint8_t[]){ 16, 17, 23, 18, 26, 15, 25, 22, 19, 11, 12, 13, 24, 14, 20, 21 }
+
+#define TSCH_HOPPING_SEQUENCE_8_8 (uint8_t[]){ 16, 17, 23, 18, 26, 15, 25, 22}
 /* 4 channels, sequence length 16 */
 #define TSCH_HOPPING_SEQUENCE_4_16 (uint8_t[]){ 20, 26, 25, 26, 15, 15, 25, 20, 26, 15, 26, 25, 20, 15, 20, 25 }
 /* 4 channels, sequence length 4 */

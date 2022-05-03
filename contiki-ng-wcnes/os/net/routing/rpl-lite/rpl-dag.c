@@ -145,7 +145,8 @@ rpl_dag_periodic(unsigned seconds)
         LOG_WARN("DAG expired, poison and leave\n");
         curr_instance.dag.state = DAG_POISONING;
         rpl_timers_schedule_state_update();
-      } else if(curr_instance.dag.lifetime < 300 && curr_instance.dag.preferred_parent != NULL) {
+        //Below life time changed to 1000 from 300 by Saroop -
+      } else if(curr_instance.dag.lifetime < 1000 && curr_instance.dag.preferred_parent != NULL) {
         /* Five minutes before expiring, start sending unicast DIS to get an update */
         LOG_WARN("DAG expiring in %u seconds, send DIS to preferred parent\n", (unsigned)curr_instance.dag.lifetime);
         rpl_icmp6_dis_output(rpl_neighbor_get_ipaddr(curr_instance.dag.preferred_parent));
@@ -203,6 +204,7 @@ rpl_refresh_routes(const char *str)
 void
 rpl_global_repair(const char *str)
 {
+  #if 0
   if(rpl_dag_root_is_root()) {
     RPL_LOLLIPOP_INCREMENT(curr_instance.dag.version);  /* New DAG version */
     curr_instance.dtsn_out = RPL_LOLLIPOP_INIT;  /* Re-initialize DTSN */
@@ -216,11 +218,13 @@ rpl_global_repair(const char *str)
     /* Now do a local repair to disseminate the new version */
     rpl_local_repair("Global repair");
   }
+  #endif
 }
 /*---------------------------------------------------------------------------*/
 static void
 global_repair_non_root(rpl_dio_t *dio)
 {
+  #if 0
   if(!rpl_dag_root_is_root()) {
     LOG_WARN("participating in global repair, version %u, rank %u\n",
          dio->version, curr_instance.dag.rank);
@@ -234,11 +238,13 @@ global_repair_non_root(rpl_dio_t *dio)
     process_dio_init_dag(dio);
     rpl_local_repair("Global repair");
   }
+  #endif
 }
 /*---------------------------------------------------------------------------*/
 void
 rpl_local_repair(const char *str)
 {
+  #if 0
   if(curr_instance.used) { /* Check needed because this is a public function */
     LOG_WARN("local repair (%s)\n", str);
     if(!rpl_dag_root_is_root()) {
@@ -249,6 +255,7 @@ rpl_local_repair(const char *str)
     rpl_timers_dio_reset("Local repair"); /* Reset Trickle timer */
     rpl_timers_schedule_state_update();
   }
+  #endif
 }
 /*---------------------------------------------------------------------------*/
 int
