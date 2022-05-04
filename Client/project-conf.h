@@ -79,7 +79,9 @@
 #define TSCH_CONF_ASSOCIATION_POLL_FREQUENCY 5
 
 /*Enable TCP*/
-//#define UIP_CONF_TCP 1
+#define UIP_CONF_UDP 0
+#define UIP_CONF_TCP 1
+#define UIP_CONF_ICMP6 1
 
 /*******************************************************/
 /************* Other system configuration **************/
@@ -87,7 +89,7 @@
 
 /* Logging */
 #define LOG_CONF_LEVEL_RPL                         LOG_LEVEL_INFO
-//#define LOG_CONF_LEVEL_TCPIP                       LOG_LEVEL_WARN
+#define LOG_CONF_LEVEL_TCPIP                       LOG_LEVEL_WARN
 //#define LOG_CONF_LEVEL_IPV6                        LOG_LEVEL_WARN
 //#define LOG_CONF_LEVEL_6LOWPAN                     LOG_LEVEL_WARN
 //#define LOG_CONF_LEVEL_MAC                         LOG_LEVEL_DBG

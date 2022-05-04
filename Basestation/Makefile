@@ -1,3 +1,5 @@
+all: tcp-server tcp-client
+
 # Contiki network configuration
 MAKE_MAC = MAKE_MAC_TSCH #Mac as Tsch
 
@@ -32,5 +34,9 @@ endif
 ifeq ($(MAKE_WITH_PERIODIC_ROUTES_PRINT),1)
 CFLAGS += -DWITH_PERIODIC_ROUTES_PRINT=1
 endif
+
+HAVE_BANKING=1
+UIP_CONF_IPV6=1
+UIP_CONF_RPL=1
 
 include $(CONTIKI)/Makefile.include
