@@ -83,6 +83,8 @@
 #define UIP_CONF_TCP 1
 #define UIP_CONF_ICMP6 1
 
+#define UIP_CONF_RECEIVE_WINDOW 1280
+
 /*******************************************************/
 /************* Other system configuration **************/
 /*******************************************************/
@@ -105,6 +107,10 @@
 #define TSCH_CONF_KEEPALIVE_TIMEOUT (60*CLOCK_SECOND)
 #define TSCH_CONF_MAX_KEEPALIVE_TIMEOUT (120*CLOCK_SECOND)
 
+#define TSCH_CONF_DEQUEUED_ARRAY_SIZE 128
+#define TSCH_CONF_MAX_INCOMING_PACKETS 128
+
+#define RPL_CONF_WITH_STORING 1
 #define RPL_CONF_WITH_PROBING 0
 #define RPL_CONF_PREFERENCE 0
 
