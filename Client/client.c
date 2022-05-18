@@ -18,7 +18,7 @@ AUTOSTART_PROCESSES(&client_process);
 //CLIENT
 static struct etimer et;
 static uip_ipaddr_t addr;
-#define SEND_INTERVAL		2*CLOCK_SECOND
+#define SEND_INTERVAL		CLOCK_SECOND
 
 #define FILE_SIZE 10000
 #define PKT_SIZE 64
@@ -126,7 +126,7 @@ PROCESS_THREAD(client_process, ev, data) {
     
       etimer_set(&et, SEND_INTERVAL);
 
-      while(1) {
+      while(counter<156) {
         if((0==client_connected)&&NETSTACK_ROUTING.node_is_reachable() && NETSTACK_ROUTING.get_root_ipaddr(&dest_ipaddr))
         {
             tcp_connect(&dest_ipaddr, UIP_HTONS(1010), NULL);
