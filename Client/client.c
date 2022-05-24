@@ -21,7 +21,7 @@ static uip_ipaddr_t addr;
 #define SEND_INTERVAL		CLOCK_SECOND
 
 #define FILE_SIZE 10000
-#define PKT_SIZE 64
+#define PKT_SIZE 32
 #define HDR_SIZE 6
 
 static void add_header(uint8_t *packet, uint16_t seq);
@@ -126,7 +126,8 @@ PROCESS_THREAD(client_process, ev, data) {
     
       etimer_set(&et, SEND_INTERVAL);
 
-      while(counter<156) {
+      while(1) 
+      {
         if((0==client_connected)&&NETSTACK_ROUTING.node_is_reachable() && NETSTACK_ROUTING.get_root_ipaddr(&dest_ipaddr))
         {
             tcp_connect(&dest_ipaddr, UIP_HTONS(1010), NULL);
